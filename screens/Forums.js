@@ -5,7 +5,7 @@ import * as WebBrowser from 'expo-web-browser';
 
 import { MonoText } from '../components/StyledText';
 
-export default function Calander() {
+export default function Forums() {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
@@ -23,10 +23,10 @@ export default function Calander() {
         <View style={styles.getStartedContainer}>
           <DevelopmentModeNotice />
 
-          <Text style={styles.getStartedText}>This is the Calander Page :</Text>
+          <Text style={styles.getStartedText}>This is the Forums Page :</Text>
 
           <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-            <MonoText>screens/Calander.js</MonoText>
+            <MonoText>screens/Forums.js</MonoText>
           </View>
 
           <Text style={styles.getStartedText}>
@@ -52,7 +52,7 @@ export default function Calander() {
   );
 }
 
-Calander.navigationOptions = {
+Forums.navigationOptions = {
   header: null,
 };
 
