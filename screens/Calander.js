@@ -1,180 +1,52 @@
-import * as React from 'react';
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-import * as WebBrowser from 'expo-web-browser';
-import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
+import React, {Component} from 'react';
+import {StyleSheet, View, ScrollView, Text} from 'react-native';
+import {Calendar} from 'react-native-calendars';
 
 
-import { MonoText } from '../components/StyledText';
+export default class Calandar extends Component {
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      selected: undefined
+    };
+  }
 
-export default function Calander() {
-  return (
-    <View style={styles.container}>
-      <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-        <View style={styles.welcomeContainer}>
-          <Image
-            source={
-              __DEV__
-                ? require('../assets/images/gmitLogo.png')
-                : require('../assets/images/robot-prod.png')
+  onDayPress = (day) => {
+    this.setState({selected: day.dateString});
+  }
+
+  render() {
+    return (
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Text style={styles.text}>Semester 2 @ GMIT </Text>
+        <Calendar
+          style={styles.calendar}
+          hideExtraDays
+          onDayPress={this.onDayPress}
+          markedDates={{
+            [this.state.selected]: {
+              selected: true, 
+              disableTouchEvent: true, 
+              selectedDotColor: 'orange'
             }
-            style={styles.welcomeImage}
-          />
-<CalendarList
-  // Callback which gets executed when visible months change in scroll view. Default = undefined
-  onVisibleMonthsChange={(months) => {console.log('now these months are visible', months);}}
-  // Max amount of months allowed to scroll to the past. Default = 50
-  pastScrollRange={50}
-  // Max amount of months allowed to scroll to the future. Default = 50
-  futureScrollRange={50}
-  // Enable or disable scrolling of calendar list
-  scrollEnabled={true}
-  // Enable or disable vertical scroll indicator. Default = false
-  showScrollIndicator={true}
-  calendarParams
-/>
-       </View>
+          }}
         
-      
-
-
-        
-
-        <View style={styles.helpContainer}>
-          <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-            <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
-          </TouchableOpacity>
-        </View>
+        />
       </ScrollView>
-
-
-    </View>
-  );
-}
-
-Calander.navigationOptions = {
-  header: null,
-};
-
-function DevelopmentModeNotice() {
-  if (__DEV__) {
-    const learnMoreButton = (
-      <Text onPress={handleLearnMorePress} style={styles.helpLinkText}>
-        Learn more
-      </Text>
-    );
-
-    return (
-      <Text style={styles.developmentModeText}>
-        Development mode is enabled: your app will be slower but you can use useful development
-        tools. {learnMoreButton}
-      </Text>
-    );
-  } else {
-    return (
-      <Text style={styles.developmentModeText}>
-        You are not in development mode: your app will run at full speed.
-      </Text>
     );
   }
 }
 
-function handleLearnMorePress() {
-  WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/workflow/development-mode/');
-}
-
-function handleHelpPress() {
-  WebBrowser.openBrowserAsync(
-    'https://docs.expo.io/versions/latest/get-started/create-a-new-app/#making-your-first-change'
-  );
-}
-
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
+  calendar: {
+    marginBottom: 10
   },
-  developmentModeText: {
-    marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
+  text: {
     textAlign: 'center',
-  },
-  contentContainer: {
-    paddingTop: 30,
-  },
-  welcomeContainer: {
-    alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
-  },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
-  },
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
-  },
-  homeScreenFilename: {
-    marginVertical: 7,
-  },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
-  },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  getStartedText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'center',
-  },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { width: 0, height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
-  navigationFilename: {
-    marginTop: 5,
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
-  },
+    padding: 10,
+    backgroundColor: 'lightgrey',
+    fontSize: 16
+  }
 });
