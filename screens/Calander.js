@@ -2,6 +2,8 @@ import * as React from 'react';
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
+import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
+
 
 import { MonoText } from '../components/StyledText';
 
@@ -18,21 +20,25 @@ export default function Calander() {
             }
             style={styles.welcomeImage}
           />
-        </View>
+<CalendarList
+  // Callback which gets executed when visible months change in scroll view. Default = undefined
+  onVisibleMonthsChange={(months) => {console.log('now these months are visible', months);}}
+  // Max amount of months allowed to scroll to the past. Default = 50
+  pastScrollRange={50}
+  // Max amount of months allowed to scroll to the future. Default = 50
+  futureScrollRange={50}
+  // Enable or disable scrolling of calendar list
+  scrollEnabled={true}
+  // Enable or disable vertical scroll indicator. Default = false
+  showScrollIndicator={true}
+  calendarParams
+/>
+       </View>
+        
+      
 
-        <View style={styles.getStartedContainer}>
-          <DevelopmentModeNotice />
 
-          <Text style={styles.getStartedText}>This is the Calander Page :</Text>
-
-          <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-            <MonoText>screens/Calander.js</MonoText>
-          </View>
-
-          <Text style={styles.getStartedText}>
-            Change any of the text, save the file, and your app will automatically reload.
-          </Text>
-        </View>
+        
 
         <View style={styles.helpContainer}>
           <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
@@ -41,13 +47,7 @@ export default function Calander() {
         </View>
       </ScrollView>
 
-      <View style={styles.tabBarInfoContainer}>
-        <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
 
-        <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-          <MonoText style={styles.codeHighlightText}>navigation/BottomTabNavigator.js</MonoText>
-        </View>
-      </View>
     </View>
   );
 }
