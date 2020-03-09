@@ -4,8 +4,9 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import Nightlife from '../screens/Nightlife';
-import Calander from '../screens/Calander';
+import Calendar from '../screens/Calendar';
 import Forums from '../screens/Forums';
+import Rent from '../screens/Rent';
 
 
 const BottomTab = createBottomTabNavigator();
@@ -28,10 +29,10 @@ export default function BottomTabNavigator({ navigation, route }) {
         }}
       />
       <BottomTab.Screen
-        name="Calander"
-        component={Calander}
+        name="Calendar"
+        component={Calendar}
         options={{
-          title: 'Calander',
+          title: 'Calendar',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
         }}
       />
@@ -40,6 +41,14 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={Forums}
         options={{
           title: 'Student Forums',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
+        }}
+      />
+       <BottomTab.Screen
+        name="Accomodation"
+        component={Rent}
+        options={{
+          title: 'Accomodation',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
         }}
       />
@@ -59,14 +68,20 @@ function getHeaderTitle(route) {
   const routeName = route.state?.routes[route.state.index]?.name ?? INITIAL_ROUTE_NAME;
 
   switch (routeName) {
-    case 'Home':
-      return 'How to get started';
+    case 'Home ID':
+      return 'GMIT Student App';
     case 'Links':
       return 'Links to learn more';
     case 'Events':
         return 'How to get started';
     case 'Nightlife':
-        return 'Links to learn more';
+        return 'Galway Nightlife';
+    case 'Accomodation':
+        return 'Student Accomodation';
+    case 'Calendar':
+        return 'Calendar';
+    case 'Forums':
+        return 'Student Forum';
         
   }
 }

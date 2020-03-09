@@ -3,7 +3,7 @@ import {StyleSheet, View, ScrollView, Text} from 'react-native';
 import {Calendar} from 'react-native-calendars';
 
 
-export default class Calandar extends Component {
+export default class _Calendar extends Component {
   constructor(props) {
     super(props);
     
