@@ -7,6 +7,7 @@ import Nightlife from '../screens/Nightlife';
 import Calendar from '../screens/Calendar';
 import Forums from '../screens/Forums';
 import Rent from '../screens/Rent';
+import Signup from '../screens/Signup';
 
 
 const BottomTab = createBottomTabNavigator();
