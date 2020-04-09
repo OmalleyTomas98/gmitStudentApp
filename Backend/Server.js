@@ -9,8 +9,8 @@ const recordRoutes = express.Router();
 //Define port No for server to run on 
 const PORT = 4000;
 
-//Define the record Schema
-let Record = require('./record');
+//Define the Studentprofile Schema
+let Studentprofile = require('./studentprofile');
 
 //Cors Definition 
 app.use(cors());
@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 
 
 //Defines the mongoDB Connection I created
-const mongoDB = 'mongodb+srv://moss98g:BEAST123@cluster0-mc4w7.mongodb.net/test?retryWrites=true&w=majority';
+const mongoDB =  'mongodb+srv://studentUser2020:studentUser2020@studentinfo-7luad.mongodb.net/test?retryWrites=true&w=majority';
 //Connects to my Mongo Cluster 
 
 mongoose.connect(mongoDB,{useNewUrlParser:true});
@@ -26,20 +26,22 @@ mongoose.connect(mongoDB,{useNewUrlParser:true});
 //Define the connection
 const connection = mongoose.connection;
 
+
+
 //Open Connection
 connection.once('open', function() {
     console.log("MongoDB database connection established successfully");
 })
-
+ 
 recordRoutes.route('/').get(function(req, res) {
     //Mongoose  find() query to 
-    Record.find(function(err, records) {
+    Studentprofile.find(function(err, studentprofiles) {
         if (err) {
             //DEBUG ERROR REPORT TO CONSOLE
             console.log(err);
         } else {
             //Format  records via JSON 
-            res.json(records);
+            res.json(studentprofiles);
         }
     });
 });
@@ -49,30 +51,34 @@ recordRoutes.route('/:id').get(function(req, res) {
     //creates id var and returns record
     let id = req.params.id;
     //
-    Record.findById(id, function(err, record) {
-        res.json(record);
+    Studentprofile.findById(id, function(err, studentprofile) {
+        res.json(studentprofile);
         
     });
 });
 
 //update function updates the spefic object based off of their Unique ID
 recordRoutes.route('/update/:id').post(function(req, res) {
-    Record.findById(req.params.id, function(err, record) {
+    Studentprofile.findById(req.params.id, function(err, studentprofile) {
         //DEBUG Return error if the specific object ID is not found
-        if (!record)
+        if (!studentprofile)
             //DEBUG return HTTP error status 404 if not found 
             res.status(404).send("data is not found");
 
         else
             //Mapping Requests to instance variables found in the records schema
-            record.record_description = req.body.record_description;
-            record.record_artist = req.body.record_artist;
-            record.record_year = req.body.record_year;
-            record.record_listened = req.body.record_listened;
+            studentprofile.student_name = req.body.student_name;
+            studentprofile.student_g00 = req.body.student_g00;
+            studentprofile.student_course = req.body.student_course;
+            studentprofile.student_email = req.body.student_email;
+            studentprofile.student_address = req.body.student_address;
+            studentprofile.student_Year = req.body.student_Year;
+            studentprofile.student_Age = req.body.student_Age;
 
-            //call record object/schema and save the instances of the records then prompt update to console
-            record.save().then(record => {
-                res.json('record updated!');
+
+            //call studentprofile object/schema and save the instances of the records then prompt update to console
+            studentprofile.save().then(studentprofile => {
+                res.json('studentprofile updated!');
             })
             .catch(err => {
                 //Debug send HTTP error Status 400 if the the update was not possible to the serve 
@@ -82,27 +88,27 @@ recordRoutes.route('/update/:id').post(function(req, res) {
 });
 
 //Create  a query to show The Total number of Albums , formats and so on inside of your data 
-var query = Record.find({ 'record_description': 'Kanye West' });
+var query = Studentprofile.find({ 'student_g00': 'G00361128' });
 
 //Add a Record into the MongoDB test.records Database
 recordRoutes.route('/add').post(function(req, res) {
-    let record = new Record(req.body);
-    record.save()
-        .then(record => {
+    let studentprofile = new Studentprofile(req.body);
+    studentprofile.save()
+        .then(studentprofile => {
             //Debug HTTP STATUS 200 if Successfull in the CONSOLE 
-            res.status(200).json({'record': 'record added successfully'});
+            res.status(200).json({'recostudentprofilerd': 'studentprofile added successfully'});
         })
            //Debug HTTP STATUS 400 if Successfull in the CONSOLE 
         .catch(err => {
-            res.status(400).send('adding new record failed');
+            res.status(400).send('adding new studentprofile failed');
         });
 });
 
 //USE the db records folder (records.js)
-app.use('/records', recordRoutes);
+app.use('/studentprofile', recordRoutes);
    
 
 //Display the port in use to the console for ease of debugging
 app.listen(PORT, function() {
     console.log("Server is running on Port: " + PORT);
-}); 
+});
