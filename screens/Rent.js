@@ -8,6 +8,26 @@ export default class Rent extends Component {
           <Text style={styles.headerRent}>Rent Student Accomodation:</Text>
         );
       }
+/*
+      state = {
+        address: '',
+        cost: '',
+        posts: []
+      };
+
+    }
+
+    // Retrieve Rent Database from MongoDB
+    getRentPost = () = > {
+      axios.get('/api')
+      .then((response) => {
+        const data = response.data;
+        this.setState({posts: data });
+        console.log('Data received!');
+      })
+      .catch(() => {
+        alert('Error');
+      });*/
     }
 
     const styles = StyleSheet.create({
