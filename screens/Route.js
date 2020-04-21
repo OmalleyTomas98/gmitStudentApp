@@ -6,7 +6,6 @@ import {Router, Stack, Scene} from 'react-native-router-flux';
 import Login from '../screens/Login';
 import Signup from '../screens/Signup';
 
-
 export default class Route extends Component {
     render() {
         return (
