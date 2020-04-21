@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
+// Set up rent schema
 const rentSchema = new Schema({
     address: {type: String, required: true},
     features: {type: String, required: true},

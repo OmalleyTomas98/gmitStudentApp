@@ -8,6 +8,7 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+// Add property
 router.route('/add').post((req, res) => {
     const address = req.ody.address;
     const features = req.body.features;
@@ -21,23 +22,27 @@ router.route('/add').post((req, res) => {
         contact,
     });
 
+    // Save changes
     newRent.save()
     .then(() => res.json('Property Added!'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+// Retrieve property from database
 router.route('/:id').get((req, res) => {
     Rent.findById(req.params.id)
     .then(rent => res.json(rent))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+// Delete property from database
 router.route('/:id').delete((req, res) => {
     Rent.findByIdAndDelete(req.params.id)
       .then(() => res.json('Property Deleted'))
       .catch(err => res.status(400).json('Error: ' + err));
 });
 
+// Update property
 router.route('/update/:id').post((req, res) => {
     Rent.findById(req.params.id)
     .then(rent => {

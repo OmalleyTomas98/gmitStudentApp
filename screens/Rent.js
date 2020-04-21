@@ -1,18 +1,17 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {StyleSheet, View, ScrollView, Text} from 'react-native';
 import "bootstrap/dist/css/bootstrap.min.css"
-//import RentNav from './RentNav'
 
 export default class Rent extends Component {
   constructor(props) {
     super(props);
 
-    // Constructor
+    // Constructor for updating property
     this.onChangeAddress  = this.onChangeAddress.bind(this);
     this.onChangeFeatures  = this.onChangeFeatures.bind(this);
     this.onChangeCost  = this.onChangeCost.bind(this);
     this.onChangeContact  = this.onChangeContact.bind(this);
-    this.onSubmiti = this.onSubmit.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       address: '',
@@ -22,30 +21,35 @@ export default class Rent extends Component {
     }
   }
 
+  // Update Address
   onChangeAddress(e) {
     this.setState({
       address: e.target.value
     });
   }
 
+  // Update Features
   onChangeFeatures(e) {
     this.setState({
       features: e.target.value
     });
   }
 
+  // Update Cost
   onChangeCost(e) {
     this.setState({
       cost: e.target.value
     });
   }
 
+  // Update Contact
   onChangeContact(e) {
     this.setState({
       contact: e.target.value
     });
   }
 
+  // Submit
   onSubmit(e) {
     e.preventDefault();
 
@@ -58,14 +62,19 @@ export default class Rent extends Component {
     console.log(rent);
   }
 
-    render() {
+    render() {  // Render function
         return (
-        <div>
-           <Text style={styles.headerRent}>Rent Student Accomodation:</Text>
-          <h3>Post New Accomodation</h3>
+          // Main div container
+          <div
+          style={{
+            position: 'absolute', left: '50%', top: '40%',
+            transform: 'translate(-50%, -50%)'
+        }}>
+          
+           <Text style={styles.headerRent}>Rent Student Accomodation: {"\n\n\n"}</Text>
             <form>{this.onSubmit}
               <div className="form-group">
-            <label>Address</label>
+            <label className="text-center">Address</label>
             <input type="text"
              required
              className="form-control"
@@ -112,6 +121,8 @@ export default class Rent extends Component {
         );
       }
     }
+
+    // Style
     const styles = StyleSheet.create({
       container: {
         flex: 1,
@@ -123,6 +134,6 @@ export default class Rent extends Component {
         fontSize: 26,
         lineHeight: 19,
         textAlign: 'center',
-    },
+     },
   });
 
