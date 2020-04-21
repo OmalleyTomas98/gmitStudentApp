@@ -19,7 +19,7 @@ export default class _Calendar extends Component {
   render() {
     return (
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Text style={styles.text}>Semester 2 @ GMIT </Text>
+        <Text style={styles.text}>Monthly scheduler </Text>
         <Calendar
           style={styles.calendar}
           hideExtraDays
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   text: {
     textAlign: 'center',
     padding: 10,
-    backgroundColor: 'lightgrey',
+    backgroundColor: 'lightblue',
     fontSize: 16
   }
 });

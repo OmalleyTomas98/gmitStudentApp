@@ -136,12 +136,13 @@ onSubmit(e)
         student_Year: '', 
         student_Age: ''
 
-
     })
 }
  render() {
     return (
-        <div style = {{marginTop: 20}}>
+
+        <div style = {{position: "absolute"}}>
+
             <h3>Create your student Profile</h3>
             <form onSubmit={this.onSubmit}>
                 <div className="form-group">
@@ -210,6 +211,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: 'white',
+      position:  'relative'
     },
     signupTextCont: {
       flexGrow: 1,

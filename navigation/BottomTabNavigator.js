@@ -26,7 +26,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={HomeScreen}
         options={{
           title: 'Home',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-home" />,
         }}
       />
       <BottomTab.Screen
@@ -34,7 +34,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={Calendar}
         options={{
           title: 'Calendar',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-calendar" />,
         }}
       />
          <BottomTab.Screen
@@ -42,7 +42,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={Forums}
         options={{
           title: 'Student Forums',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-paper" />,
         }}
       />
        <BottomTab.Screen
@@ -50,7 +50,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={Rent}
         options={{
           title: 'Accomodation',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
         }}
       />
          <BottomTab.Screen
@@ -58,7 +58,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={Nightlife}
         options={{
           title: 'Nightlife',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-beer" />,
         }}
       />
     </BottomTab.Navigator>
